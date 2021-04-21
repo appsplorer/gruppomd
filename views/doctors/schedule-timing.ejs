@@ -103,8 +103,12 @@
                                                             <div id="slot_sunday" class="tab-pane fade">
                                                                 <h4 class="card-title d-flex justify-content-between">
                                                                     <span>Time Slots</span> 
+																	<% if (records.find(x => x.daychkval === 'sunchk')) { %>
+                                                                    <a class="edit-link" data-toggle="modal" href="#edit_time_slot" onclick="shwtimeslot('sunchk')"><i class="fa fa-edit mr-1"></i>Edit</a>
+																	<% } else { %>
                                                                     <a class="edit-link" data-toggle="modal" href="#add_time_slot" onmouseover="$('#daychkval').val('sunchk')"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
+                                                                	<% }  %>
+																</h4>
                                                                   <!-- Slot List -->
 																  <div class="doc-times">
 																	  
@@ -127,8 +131,8 @@
                                                             <div id="slot_monday" class="tab-pane fade show active">
                                                                 <h4 class="card-title d-flex justify-content-between">
                                                                     <span>Time Slots</span> 
-																	<% if (records) { %>
-                                                                    <a class="edit-link" data-toggle="modal" href="#edit_time_slot"><i class="fa fa-edit mr-1"></i>Edit</a>
+																	<% if (records.find(x => x.daychkval === 'monchk')) { %>
+                                                                    <a class="edit-link" data-toggle="modal" href="#edit_time_slot"  onclick="shwtimeslot('monchk')"><i class="fa fa-edit mr-1"></i>Edit</a>
 																	<% } else { %>
                                                                     <a class="edit-link" data-toggle="modal" href="#add_time_slot" onmouseover="$('#daychkval').val('monchk')"><i class="fa fa-plus-circle"></i> Add Slot</a>
 																	<% }  %>
@@ -156,9 +160,13 @@
                                                             <!-- Tuesday Slot -->
                                                             <div id="slot_tuesday" class="tab-pane fade">
                                                                 <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span> 
+                                                                    <span>Time Slots</span>  
+																	<% if (records.find(x => x.daychkval === 'tuechk')) { %>
+                                                                    <a class="edit-link" data-toggle="modal" href="#edit_time_slot"  onclick="shwtimeslot('tuechk')"><i class="fa fa-edit mr-1"></i>Edit</a>
+																	<% } else { %>
 																	<a class="edit-link" data-toggle="modal" href="#add_time_slot" onmouseover="$('#daychkval').val('tuechk')"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
+																	<% }  %>
+																</h4>
                                                                 <!-- Slot List -->
 																  <div class="doc-times">
 																	  
@@ -180,9 +188,13 @@
                                                             <!-- Wednesday Slot -->
                                                             <div id="slot_wednesday" class="tab-pane fade">
                                                                 <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span> 
+                                                                    <span>Time Slots</span>   
+																	<% if (records.find(x => x.daychkval === 'wedchk')) { %>
+                                                                    <a class="edit-link" data-toggle="modal" href="#edit_time_slot"  onclick="shwtimeslot('wedchk')"><i class="fa fa-edit mr-1"></i>Edit</a>
+																	<% } else { %>
                                                                     <a class="edit-link" data-toggle="modal" href="#add_time_slot" onmouseover="$('#daychkval').val('wedchk')"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
+                                                                    <% }  %>
+																</h4>
                                                                 <!-- Slot List -->
 																  <div class="doc-times">
 																	  
@@ -204,9 +216,13 @@
                                                             <!-- Thursday Slot -->
                                                             <div id="slot_thursday" class="tab-pane fade">
                                                                 <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span> 
+                                                                    <span>Time Slots</span>    
+																	<% if (records.find(x => x.daychkval === 'thurchk')) { %>
+                                                                    <a class="edit-link" data-toggle="modal" href="#edit_time_slot"  onclick="shwtimeslot('thurchk')"><i class="fa fa-edit mr-1"></i>Edit</a>
+																	<% } else { %>
                                                                     <a class="edit-link" data-toggle="modal" href="#add_time_slot" onmouseover="$('#daychkval').val('thurchk')"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
+                                                               		 <% }  %>
+																</h4>
                                                                   <!-- Slot List -->
 																  <div class="doc-times">
 																	  
@@ -228,9 +244,13 @@
                                                             <!-- Friday Slot -->
                                                             <div id="slot_friday" class="tab-pane fade">
                                                                 <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span> 
+                                                                    <span>Time Slots</span>     
+																	<% if (records.find(x => x.daychkval === 'fridchk')) { %>
+                                                                    <a class="edit-link" data-toggle="modal" href="#edit_time_slot"  onclick="shwtimeslot('fridchk')"><i class="fa fa-edit mr-1"></i>Edit</a>
+																	<% } else { %>
                                                                     <a class="edit-link" data-toggle="modal" href="#add_time_slot" onmouseover="$('#daychkval').val('fridchk')"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
+                                                                	 <% }  %>
+																</h4>
                                                                   <!-- Slot List -->
 																  <div class="doc-times">
 																	  
@@ -252,9 +272,13 @@
                                                             <!-- Saturday Slot -->
                                                             <div id="slot_saturday" class="tab-pane fade">
                                                                 <h4 class="card-title d-flex justify-content-between">
-                                                                    <span>Time Slots</span> 
+                                                                    <span>Time Slots</span>     
+																	<% if (records.find(x => x.daychkval === 'saturdchk')) { %>
+                                                                    <a class="edit-link" data-toggle="modal" href="#edit_time_slot"  onclick="shwtimeslot('saturdchk')"><i class="fa fa-edit mr-1"></i>Edit</a>
+																	<% } else { %>
 																	<a class="edit-link" data-toggle="modal" href="#add_time_slot" onmouseover="$('#daychkval').val('saturdchk')"><i class="fa fa-plus-circle"></i> Add Slot</a>
-                                                                </h4>
+                                                                	 <% }  %>
+																</h4>
                                                                   <!-- Slot List -->
 																  <div class="doc-times">
 																	  
@@ -365,104 +389,10 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">
-						<form>
-							<div class="hours-info">
-								<div class="row form-row hours-cont">
-									<div class="col-12 col-md-10">
-										<div class="row form-row">
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Start Time</label>
-													<select class="form-control">
-														<option>-</option>
-														<option selected>12.00 am</option>
-														<option>12.30 am</option>  
-														<option>1.00 am</option>
-														<option>1.30 am</option>
-													</select>
-												</div> 
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>End Time</label>
-													<select class="form-control">
-														<option>-</option>
-														<option>12.00 am</option>
-														<option selected>12.30 am</option>  
-														<option>1.00 am</option>
-														<option>1.30 am</option>
-													</select>
-												</div> 
-											</div>
-										</div>
-									</div>
-								</div>
+					<div class="modal-body" >
+						<form method="POST" action="/updslottime">
+							<div class="hours-info" id="modleditdta">
 								
-								<div class="row form-row hours-cont">
-									<div class="col-12 col-md-10">
-										<div class="row form-row">
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Start Time</label>
-													<select class="form-control">
-														<option>-</option>
-														<option>12.00 am</option>
-														<option selected>12.30 am</option>
-														<option>1.00 am</option>
-														<option>1.30 am</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>End Time</label>
-													<select class="form-control">
-														<option>-</option>
-														<option>12.00 am</option>
-														<option>12.30 am</option>
-														<option selected>1.00 am</option>
-														<option>1.30 am</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-12 col-md-2"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>
-								</div>
-								
-								<div class="row form-row hours-cont">
-									<div class="col-12 col-md-10">
-										<div class="row form-row">
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Start Time</label>
-													<select class="form-control">
-														<option>-</option>
-														<option>12.00 am</option>
-														<option>12.30 am</option>
-														<option selected>1.00 am</option>
-														<option>1.30 am</option>
-													</select>
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>End Time</label>
-													<select class="form-control">
-														<option>-</option>
-														<option>12.00 am</option>
-														<option>12.30 am</option>
-														<option>1.00 am</option>
-														<option selected>1.30 am</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-12 col-md-2"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>
-								</div>
-
 							</div>
 							
 							<div class="add-more mb-3">

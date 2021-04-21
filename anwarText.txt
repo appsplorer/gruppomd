@@ -9,22 +9,25 @@ const passport = require('passport');
 const session = require('express-session');
 const {ensureAuthenticated} = require('../config/auth') 
 var multer  = require('multer');
-var path = require('path')
-//const upload = multer({ dest: 'public/uploads/'});
-// SET STORAGE
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'public/uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname)
+const upload = multer({dest:'public/uploads'});
+//const upload = multer({ dest: 'uploads/'});
+/*
+const storage = multer.diskStorage({
+  destination: './public/uploads/',
+  filename: function(req, file, cb){
+    cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
-})
- 
-var upload = multer({ storage: storage });
-var uploadMultiple=upload.fields([{ name: 'profile_image', maxCount: 10 }, { name: 'clinic_image', maxCount: 10 }])
+});
 
-/* GET home page. */
+// Init Upload
+const upload = multer({
+  storage: storage,
+  limits:{fileSize: 1000000},
+}).single('profile_image');
+
+
+
+ GET home page. */
 router.get('/', function(req, res, next) {  
   res.render('doctors/index', { title: 'Home' });
 });
@@ -49,17 +52,16 @@ router.get('/patient-profile-setting',ensureAuthenticated,function(req,res,next)
 
 router.post('/patient-save-profile',upload.single('profile_image'),(req,res)=>{  
 
-  
-  // Init Upload
-  console.log(req.file);
   if (!req.file) {
- 
-  } 
-  else {
-    console.log('file received'); 
+    console.log("No file received");
+  
+
+  } else {
+    console.log('file received');
+   
   }
 
-  //console.log("posted values"+req.body);
+  console.log(req.body);
 
   const {name,email} = req.body;
  // console.log(req.body.name);
@@ -73,7 +75,7 @@ router.post('/patient-save-profile',upload.single('profile_image'),(req,res)=>{
   }
 
       //validation passed
-      //var profile_image='3';
+      var profile_image='3';
       let date_nowt = new Date();
       const profileUser = new Patientprofile({
           name : name,
@@ -88,7 +90,7 @@ router.post('/patient-save-profile',upload.single('profile_image'),(req,res)=>{
           state:req.body.state,
           province:req.body.province,
           post_code:req.body.post_code,
-          profile_image:req.file.originalname,
+          profile_image:profile_image,
           blood:req.body.blood
         
 
@@ -127,27 +129,8 @@ router.post('/patient-save-profile',upload.single('profile_image'),(req,res)=>{
 router.get('/favourites', function(req, res, next) {  
   res.render('patients/favourites', { title: 'Register' });
 });
-
 router.get('/my-dependents', function(req, res, next) {  
   res.render('patients/my-dependents', { title: 'Register' });
-});
-
-router.get('/search-doctors', function(req, res, next) { 
- 
-   Doctorprofile.find({}, function(err, doctors) {
-    
-    res.render('doctors/search-doctors', {doctors:doctors, title: 'Search Doctors' });
-           
-        });
-  
-});
-
-router.get('/doctor-detail/:id?', function(req, res, next) {  
-  var id=req.params.id;
-  console.log(id)
-  Doctorprofile.findOne({_id : id}).exec((err,doctor)=>{
-  res.render('doctors/doctor-detail', {doctor:doctor,title: 'Doctor Detail' });
-  });
 });
 
 //Doctor routes
@@ -387,18 +370,14 @@ router.post('/usersregister',(req,res)=>{
 
   });
 
-router.post('/save-profile',uploadMultiple,(req,res)=>{  
-//,upload.single('clinic_image'),
-//upload.single('clinic_image');
-//upload.single('profile_image');
+router.post('/save-profile',upload.single('clinic_image'),(req,res)=>{  
+
+
   const {name,email} = req.body;
- if(req.files){
-        console.log(req.files.profile_image[0].originalname)
-         console.log(req.files.clinic_image[0].originalname)
-
-        console.log("files uploaded")
-    }
-
+ // console.log(req.body.name);
+  //console.log(req.body.email);
+  //console.log(name);
+  //return false;
   let errors = [];
   //console.log(' Name ' + name+ ' email :' + email+ ' pass:' + password);
   if(!email) {
@@ -418,7 +397,7 @@ router.post('/save-profile',uploadMultiple,(req,res)=>{
           biography : req.body.biography,
           clinic_name : req.body.clinic_name,
           clinic_address:req.body.clinic_address,
-          clinic_image:req.files.clinic_image[0].originalname,
+          clinic_image:req.body.clinic_image,
           address_one:req.body.address_one,
           address_two:req.body.address_two,
           country:req.body.country,
@@ -428,21 +407,7 @@ router.post('/save-profile',uploadMultiple,(req,res)=>{
           pricing_type:req.body.pricing_type,
           services:req.body.services,
           specialization:req.body.specialization,
-          profile_image:req.files.profile_image[0].originalname,
-          degree:req.body.degree.toString(),
-          college:req.body.college.toString(),
-          complete_year:req.body.complete_year.toString(),
-          hospital_name:req.body.hospital_name.toString(),
-          from_appoint:req.body.from_appoint.toString(),
-          to_appoint:req.body.to_appoint.toString(),
-          designation:req.body.designation.toString(),
-          awards:req.body.awards.toString(),
-          awardsyear:req.body.awardsyear.toString(),
-          memberships:req.body.memberships.toString(),
-          registrations:req.body.registrations.toString(),
-          registrationyear:req.body.registrationyear.toString()
-
-
+          profile_image:req.body.profile_image,
 
       });
      // profileUser.save();
@@ -501,46 +466,6 @@ router.post('/addslot', function(req, res, next) {
   });
   
 });
-
-router.get('/shwtimeslot',(req,res)=>{
-  var daychk=req.query.chkval;
-    // console.log(daychk);
-    var slotdata=AddSlots.find({daychkval:daychk});
-    slotdata.exec(function(err,data){
-      if(err) throw err;
-      res.render('dynamicpages/dynamicshwtimeslot',{records:data});
-    });
-  })
-
-  router.post('/updslottime', function(req, res, next) {  
-    // res.send('hiii');
-    //  console.log(req.body);
-    var editstime=req.body.updtimeslot;
-    console.log(editstime);
-   // return false;
-     var sttime = req.body.starttime;
-     var edtime = req.body.endtime;
-     var daychk = req.body.daychkval;
-     sttime.forEach(function(element,index) {
-       const num2 = edtime[index];
-       console.log(element, num2);
-       const newslots = new AddSlots({
-          starttime:element,
-          endtime:num2,
-          daychkval:daychk
-       });
-  
-       console.log(newslots);
-       newslots.save()
-       .then((value)=>{
-         req.flash('success_msg','Data Add!');
-         res.redirect('/schedule-timing');
-       })
-       .catch(value=> console.log('Not saved'));
-       
-    });
-    
-  });
 
   router.post('/loginpost',(req,res,next)=>{
    // var sess=sess=req.session;

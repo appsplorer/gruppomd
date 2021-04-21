@@ -84,6 +84,55 @@ profile_image:{
     type:String,
     required:true
 }
+,
+degree:{
+    type:String,
+    required:true
+},
+college:{
+    type:String,
+    required:true
+},
+complete_year:{
+    type:String,
+    required:true
+},
+hospital_name:{
+    type:String,
+    required:true
+},
+from_appoint:{
+    type:String,
+    required:true
+},
+to_appoint:{
+    type:String,
+    required:true
+},
+designation:{
+    type:String,
+    required:true
+},
+awards:{
+    type:String,
+    required:true
+},
+awardsyear:{
+    type:String,
+    required:true
+},
+memberships:{
+    type:String,
+    required:true
+},
+registrations:{
+    type:String,
+    required:true
+},
+registrationyear:{
+    type:String,
+    required:true
+}
 
 });
 const Doctorprofile= mongoose.model('Doctorprofile',DoctorSchema);

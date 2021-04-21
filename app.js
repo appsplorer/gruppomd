@@ -59,7 +59,7 @@ app.use(session({
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+//app.use(express.static(path.join(__dirname, '/public/assets')));
 
 app.use(function(req, res, next) {
   res.locals.authchk=req.isAuthenticated();
@@ -84,5 +84,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 
 });
-
+app.use(express.static("/public"));
 module.exports = app;

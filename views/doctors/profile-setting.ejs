@@ -35,7 +35,7 @@
                 <div class="row">
                     <%- include('../partials/sidebar-doctor'); %>
 <div class="col-md-7 col-lg-8 col-xl-9">
-                        <form method="POST" action="/save-profile">
+             <form method="POST" action="/save-profile" enctype="multipart/form-data">
                             <!-- Basic Information -->
                             <div class="card">
                                 <div class="card-body">
@@ -45,7 +45,7 @@
                                             <div class="form-group">
                                                 <div class="change-avatar">
                                                     <div class="profile-img">
-                                                        <img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+                                                        <img src="/uploads/<%=profileData?profileData.profile_image:'' %>" alt="User Image">
                                                     </div>
                                                     <div class="upload-img">
                                                         <div class="change-photo-btn">
@@ -148,7 +148,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Clinic Images</label>
-                                                <input name="clinic_image" type="file" class="form-control">
+                                                <input name="clinic_image"  type="file" class="form-control" multiple>
                                             </div>
                                        <!---    <div class="upload-wrap">
                                                 <div class="upload-images">
@@ -250,9 +250,13 @@
                                     <h4 class="card-title">Services and Specialization</h4>
                                     <div class="form-group">
                                         <label>Services</label>
-                                     <input type="text" value="<%=profileData?profileData.services:'' %>" placeholder="Services" name="services">
+                                        <div class="bootstrap-tagsinput">
+                                     <input size="14" type="text" value="<%=profileData?profileData.services:'' %>" placeholder="Services" name="services">
                                         <small class="form-text text-muted">Note : Type &amp; Press enter to add new services</small>
                                     </div> 
+                                </div>
+
+                                
                                     <div class="form-group mb-0">
                                         <label>Specialization </label>
                                         <div class="bootstrap-tagsinput"><span class="tag badge badge-info">Children Care<span data-role="remove"></span></span> <span class="tag badge badge-info">Dental Care<span data-role="remove"></span></span> <input name="specialization" value="<%=profileData?profileData.specialization:'' %>" type="text" placeholder="Enter Specialization"></div><input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="Enter Specialization" name="specialist" value="Children Care,Dental Care" id="specialist" style="display: none;">
@@ -273,19 +277,19 @@
                                                     <div class="col-12 col-md-6 col-lg-4">
                                                         <div class="form-group">
                                                             <label>Degree</label>
-                                                            <input type="text" class="form-control">
+                                                            <input type="text" value="<%= profileData?profileData.degree:'' %>" name="degree[]" class="form-control">
                                                         </div> 
                                                     </div>
                                                     <div class="col-12 col-md-6 col-lg-4">
                                                         <div class="form-group">
                                                             <label>College/Institute</label>
-                                                            <input type="text" name="college[]" class="form-control">
+                                                            <input type="text" name="college[]" value="<%= profileData?profileData.college:'' %>" class="form-control">
                                                         </div> 
                                                     </div>
                                                     <div class="col-12 col-md-6 col-lg-4">
                                                         <div class="form-group">
                                                             <label>Year of Completion</label>
-                                                            <input type="text" name="complete_year[]" class="form-control">
+                                                            <input type="text" name="complete_year[]" value="<%= profileData?profileData.complete_year:'' %>" class="form-control">
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -310,25 +314,25 @@
                                                     <div class="col-12 col-md-6 col-lg-4">
                                                         <div class="form-group">
                                                             <label>Hospital Name</label>
-                                                            <input type="text" name="hospital_name[]" class="form-control">
+                                                            <input type="text" name="hospital_name[]" value="<%= profileData?profileData.hospital_name:'' %>" class="form-control">
                                                         </div> 
                                                     </div>
                                                     <div class="col-12 col-md-6 col-lg-4">
                                                         <div class="form-group">
                                                             <label>From</label>
-                                                            <input type="text" name="from_appoint[]" class="form-control">
+                                                            <input type="text" name="from_appoint[]" value="<%= profileData?profileData.from_appoint:'' %>" class="form-control">
                                                         </div> 
                                                     </div>
                                                     <div class="col-12 col-md-6 col-lg-4">
                                                         <div class="form-group">
                                                             <label>To</label>
-                                                            <input type="text" name="to_appoint[]" class="form-control">
+                                                            <input type="text" name="to_appoint[]" value="<%= profileData?profileData.to_appoint:'' %>" class="form-control">
                                                         </div> 
                                                     </div>
                                                     <div class="col-12 col-md-6 col-lg-4">
                                                         <div class="form-group">
                                                             <label>Designation</label>
-                                                            <input type="text" name="designation[]" class="form-control">
+                                                            <input type="text" name="designation[]" value="<%= profileData?profileData.designation:'' %>" class="form-control">
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -351,13 +355,13 @@
                                             <div class="col-12 col-md-5">
                                                 <div class="form-group">
                                                     <label>Awards</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" value="<%= profileData?profileData.awards:'' %>" name="awards[]" class="form-control">
                                                 </div> 
                                             </div>
                                             <div class="col-12 col-md-5">
                                                 <div class="form-group">
                                                     <label>Year</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" name="awardsyear[]" value="<%= profileData?profileData.awardsyear:'' %>" class="form-control">
                                                 </div> 
                                             </div>
                                         </div>
@@ -378,7 +382,7 @@
                                             <div class="col-12 col-md-10 col-lg-5">
                                                 <div class="form-group">
                                                     <label>Memberships</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" value="<%= profileData?profileData.memberships:'' %>" name="memberships[]" class="form-control">
                                                 </div> 
                                             </div>
                                         </div>
@@ -399,13 +403,13 @@
                                             <div class="col-12 col-md-5">
                                                 <div class="form-group">
                                                     <label>Registrations</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" value="<%= profileData?profileData.registrations:'' %>" name="registrations[]" class="form-control">
                                                 </div> 
                                             </div>
                                             <div class="col-12 col-md-5">
                                                 <div class="form-group">
                                                     <label>Year</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" name="registrationyear[]" value="<%= profileData?profileData.registrationyear:'' %>" class="form-control">
                                                 </div> 
                                             </div>
                                         </div>
@@ -433,6 +437,6 @@
     <%- include('../partials/footer'); %>
     </div>
     <%- include('../partials/footer-scripts'); %>
-
+    <script src="assets/js/ajax.js"></script>
 </body>
 </html>

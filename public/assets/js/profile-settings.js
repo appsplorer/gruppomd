@@ -35,19 +35,19 @@ Version      : 1.0
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>Degree</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" name="degree[]" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>College/Institute</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" name="college[]" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>Year of Completion</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" name="complete_year[]" class="form-control">' +
 						'</div>' +
 					'</div>' +
 				'</div>' +
@@ -74,25 +74,25 @@ Version      : 1.0
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>Hospital Name</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" name="hospital_name[]" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>From</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" name="from_appoint[]" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>To</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" name="to_appoint[]" class="form-control">' +
 						'</div>' +
 					'</div>' +
 					'<div class="col-12 col-md-6 col-lg-4">' +
 						'<div class="form-group">' +
 							'<label>Designation</label>' +
-							'<input type="text" class="form-control">' +
+							'<input type="text" name="designation[]" class="form-control">' +
 						'</div>' +
 					'</div>' +
 				'</div>' +
@@ -117,13 +117,13 @@ Version      : 1.0
 			'<div class="col-12 col-md-5">' +
 				'<div class="form-group">' +
 					'<label>Awards</label>' +
-					'<input type="text" class="form-control">' +
+					'<input type="text" name="awards[]" class="form-control">' +
 				'</div>' +
 			'</div>' +
 			'<div class="col-12 col-md-5">' +
 				'<div class="form-group">' +
 					'<label>Year</label>' +
-					'<input type="text" class="form-control">' +
+					'<input type="text" name="awardsyear[]" class="form-control">' +
 				'</div>' +
 			'</div>' +
 			'<div class="col-12 col-md-2">' +
@@ -149,7 +149,7 @@ Version      : 1.0
 			'<div class="col-12 col-md-10 col-lg-5">' +
 				'<div class="form-group">' +
 					'<label>Memberships</label>' +
-					'<input type="text" class="form-control">' +
+					'<input type="text" name="memberships[]" class="form-control">' +
 				'</div>' +
 			'</div>' +
 			'<div class="col-12 col-md-2 col-lg-2">' +
@@ -175,13 +175,13 @@ Version      : 1.0
 			'<div class="col-12 col-md-5">' +
 				'<div class="form-group">' +
 					'<label>Registrations</label>' +
-					'<input type="text" class="form-control">' +
+					'<input type="text" name="registrations[]" class="form-control">' +
 				'</div>' +
 			'</div>' +
 			'<div class="col-12 col-md-5">' +
 				'<div class="form-group">' +
 					'<label>Year</label>' +
-					'<input type="text" class="form-control">' +
+					'<input type="text" name="registrationyear[]" class="form-control">' +
 				'</div>' +
 			'</div>' +
 			'<div class="col-12 col-md-2">' +
