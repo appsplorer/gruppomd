@@ -1,8 +1,9 @@
 const User = require('../models/user');
-const LocalStrategy = require('passport-local').Strategy;
+const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 module.exports = function(passport){
+    
     passport.use(
         new LocalStrategy({usernameField: 'email'},(email,password,done)=>{
             //match user
@@ -28,7 +29,39 @@ module.exports = function(passport){
             })
             .catch((err)=>{console.log(err)})
         })
-    )
+
+        // admin local strategy
+        
+
+    );
+    passport.use(
+        "local-admin",
+    new LocalStrategy({usernameField:'email'},(email,password,done)=>{
+        User.findOne({email:email})
+        .then((user)=>{
+            if(!user){
+                return done(null,false,{message:'email not registered'});
+            }
+            if(user.user_role!="0"){
+                return done(null,false,{message:'you are not admin'});
+            }
+            bcrypt.compare(password,user.password,(err,isMatch)=>{
+                if(err) throw err;
+                if(isMatch){
+                    return done(null,user);
+                } else{
+                    return done(null,false,{message: 'password incorrect'});
+                }
+            })
+        })
+        .catch((err)=>{
+            return done(null,false,{message:"Not match data"})
+        })
+    })        
+
+);
+
+    
     passport.serializeUser(function(user,done) {
         done(null,user.id);
     })
